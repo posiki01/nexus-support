@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Support - Contacto</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header>
+    <div class="container header-content">
+        <div class="logo">
+            <a href="index.html"> Nexus Support</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="favoritos.html">Favoritos</a></li>
+                <li><a href="contacto.html" class="active">Contacto</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="container contacto-container">
+        <div class="contacto-formulario">
+            <h2>Contáctanos</h2>
+            <form id="form-contacto">
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo</label>
+                    <input type="text" id="nombre" name="nombre">
+                    <small class="error-message" id="error-nombre"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" name="email">
+                    <small class="error-message" id="error-email"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="servicio">Servicio de interés</label>
+                    <select id="servicio" name="servicio">
+                        <option value="">Seleccione un servicio</option>
+                        <option value="Soporte Técnico 24/7">Soporte Técnico 24/7</option>
+                        <option value="Desarrollo Web">Desarrollo Web</option>
+                        <option value="Ciberseguridad">Ciberseguridad</option>
+                        <option value="Cloud Computing">Cloud Computing</option>
+                        <option value="Implementación IA">Implementación de IA</option>
+                        <option value="Desarrollo Apps">Desarrollo de Apps Móviles</option>
+                        <option value="Automatización">Automatización de Procesos</option>
+                        <option value="Mantenimiento">Mantenimiento de Equipos</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="mensaje">Mensaje</label>
+                    <textarea id="mensaje" name="mensaje" rows="5"></textarea>
+                    <small class="error-message" id="error-mensaje"></small>
+                </div>
+
+                <button type="submit" class="btn-enviar">Enviar</button>
+                <div id="mensaje-confirmacion" class="mensaje-confirmacion"></div>
+            </form>
+        </div>
+
+        <div class="contacto-info">
+            <h3>Información de Contacto</h3>
+            <div class="info-item">
+                <p><strong>Oficina Principal</strong><br>Bogotá, Colombia</p>
+            </div>
+            <div class="info-item">
+                <p><strong>Email</strong><br>contacto@nexussupport.com</p>
+            </div>
+            <div class="info-item">
+                <p><strong>Teléfono</strong><br>+57 300 123 4567</p>
+            </div>
+            <div class="info-item">
+                <p><strong>Horario de atención</strong><br>
+                Lun-Vie: 8:00 - 18:00<br>
+                Sáb: 9:00 - 13:00<br>
+                Dom: Soporte 24/7</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-links">
+            <a href="index.html">Inicio</a>
+            <a href="servicios.html">Servicios</a>
+            <a href="favoritos.html">Favoritos</a>
+            <a href="contacto.html">Contacto</a>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; 2025 Nexus Support. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="js/contacto.js"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Support - Servicios</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header>
+    <div class="container header-content">
+        <div class="logo">
+            <a href="index.html"> Nexus Support</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="servicios.html" class="active">Servicios</a></li>
+                <li><a href="favoritos.html">Favoritos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <h2 class="section-title">TODOS LOS SERVICIOS</h2>
+        
+        <div class="toolbar">
+            <div class="search-box">
+                <input type="text" id="buscador" placeholder="Buscar servicio...">
+            </div>
+            <div class="toolbar-buttons">
+                <a href="agregar.html" class="btn-toolbar">+ Agregar servicio</a>
+                <button id="btn-eliminar-seleccionados" class="btn-toolbar btn-toolbar-danger">🗑 Eliminar servicio</button>
+            </div>
+        </div>
+
+        <div class="servicios-grid" id="servicios-grid">
+            <!-- Se carga con JavaScript -->
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-links">
+            <a href="index.html">Inicio</a>
+            <a href="servicios.html">Servicios</a>
+            <a href="favoritos.html">Favoritos</a>
+            <a href="contacto.html">Contacto</a>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; 2025 Nexus Support. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/favoritos.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
