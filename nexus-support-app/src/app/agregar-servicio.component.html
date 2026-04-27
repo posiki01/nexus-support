@@ -1,0 +1,41 @@
+<section class="container">
+  <div class="form-container">
+    <h2>Agregar Nuevo Servicio</h2>
+    <form (ngSubmit)="agregar()">
+      <div class="form-group">
+        <label for="nombre">Nombre del Servicio</label>
+        <input type="text" id="nombre" name="nombre" [(ngModel)]="nuevoServicio.nombre" required>
+      </div>
+
+      <div class="form-group">
+        <label for="categoria">Categoría</label>
+        <select id="categoria" name="categoria" [(ngModel)]="nuevoServicio.categoria">
+          <option value="Soporte">Soporte</option>
+          <option value="Desarrollo">Desarrollo</option>
+          <option value="Seguridad">Seguridad</option>
+          <option value="Innovación">Innovación</option>
+          <option value="Infraestructura">Infraestructura</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="precio">Precio</label>
+        <input type="number" id="precio" name="precio" [(ngModel)]="nuevoServicio.precio" required>
+      </div>
+
+      <div class="form-group">
+        <label for="descripcion">Descripción</label>
+        <textarea id="descripcion" name="descripcion" rows="4" [(ngModel)]="nuevoServicio.descripcion" required></textarea>
+      </div>
+
+      <button type="submit" class="btn-guardar">Guardar Servicio</button>
+      <a routerLink="/servicios" class="btn-toolbar" style="width: 100%; text-align: center; margin-top: 10px; background-color: #718096; text-decoration: none; display: block;">Cancelar</a>
+    </form>
+
+    @if (confirmacion.visible) {
+      <div [class]="'mensaje-confirmacion ' + (confirmacion.exito ? 'exito' : 'error')">
+        {{ confirmacion.mensaje }}
+      </div>
+    }
+  </div>
+</section>

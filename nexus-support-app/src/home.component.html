@@ -1,0 +1,44 @@
+<!-- Hero Section - Manteniendo las clases del CSS original -->
+<section class="hero">
+  <div class="container">
+    <h1>Expertos en Soporte y Desarrollo IT</h1>
+    <p>Soluciones tecnológicas a la medida de tu negocio</p>
+    <div class="hero-buttons">
+      <a routerLink="/servicios" class="btn-primary">Nuestros Servicios</a>
+      <a routerLink="/contacto" class="btn-secondary">Contacto</a>
+    </div>
+  </div>
+</section>
+
+<!-- Sección de Destacados -->
+<section class="container">
+  <h2 class="section-title">Servicios Destacados</h2>
+  
+  <div class="cards-grid">
+    <!-- Usamos el nuevo flujo de control @for de Angular 17+ para mejor rendimiento -->
+    @for (servicio of serviciosDestacados; track servicio.id) {
+    <div class="card">
+      <!-- Añadimos la imagen del servicio -->
+      <div style="height: 150px; overflow: hidden; margin-bottom: 15px; border-radius: 4px; background: #eee;">
+        <img [src]="servicio.imagen" [alt]="servicio.nombre" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+      
+      <h3>{{ servicio.nombre }}</h3>
+      
+      <p>
+        @if (servicio.descripcion.length > 80) {
+          {{ servicio.descripcion | slice:0:80 }}...
+        } @else {
+          {{ servicio.descripcion }}
+        }
+      </p>
+      
+      <div class="servicio-precio">{{ getPrecioFormateado(servicio) }}</div>
+      
+      <button class="btn-card" (click)="verDetalle(servicio.id)">
+        Ver más &rarr;
+      </button>
+    </div>
+    }
+  </div>
+</section>

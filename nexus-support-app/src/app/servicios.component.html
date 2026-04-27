@@ -1,0 +1,48 @@
+<section class="container">
+  <h1 class="section-title">Catálogo de Servicios</h1>
+
+  <div class="toolbar">
+    <div class="search-box">
+      <input type="text" [(ngModel)]="filtro" placeholder="Buscar por nombre o categoría...">
+    </div>
+    <div class="toolbar-buttons">
+      <a routerLink="/agregar" class="btn-toolbar">+ Agregar servicio</a>
+      <button (click)="eliminarTodo()" class="btn-toolbar btn-toolbar-danger">🗑 Eliminar todos</button>
+    </div>
+  </div>
+
+  <div class="servicios-grid">
+    @for (servicio of serviciosFiltrados; track servicio.id) {
+      <div class="servicio-card">
+        <!-- Añadimos la imagen del servicio -->
+        <div style="height: 120px; overflow: hidden; margin-bottom: 10px; border-radius: 8px; background: #f7f7f7;">
+          <img [src]="servicio.imagen" [alt]="servicio.nombre" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+
+        <div class="servicio-categoria">{{ servicio.categoria }}</div>
+        <h4>{{ servicio.nombre }}</h4>
+        
+        <div class="servicio-rating">
+          @for (star of [1,2,3,4,5]; track star) {
+            <span [class]="star <= (servicio.rating || 0) ? 'star-gold' : 'star-gray'">★</span>
+          }
+        </div>
+
+        <div class="servicio-precio">${{ servicio.precio.toLocaleString() }}</div>
+
+        <div class="favorito-acciones">
+          <button class="btn-servicio" (click)="verDetalle(servicio.id)">Ver Detalle</button>
+          <button [class]="esFavorito(servicio.id) ? 'btn-detalle-fav activo' : 'btn-detalle-fav'" 
+                  (click)="toggleFavorito(servicio.id)"
+                  style="padding: 5px 10px; margin-top: 5px; width: 100%;">
+            {{ esFavorito(servicio.id) ? '❤️ Quitar' : '🤍 Favorito' }}
+          </button>
+          <button class="btn-toolbar btn-toolbar-danger" (click)="eliminarServicio(servicio.id, $event)" 
+                  style="padding: 5px 10px; margin-top: 5px; width: 100%;">
+            🗑 Eliminar
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+</section>

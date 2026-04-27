@@ -1,0 +1,19 @@
+<section class="container">
+  <h1 class="section-title">Mis Favoritos</h1>
+
+  <div class="favoritos-grid">
+    @for (fav of favoritos; track fav.id) {
+      <div class="favorito-item">
+        <div class="favorito-info">
+          <h4>{{ fav.nombre }}</h4>
+          <p>${{ fav.precio.toLocaleString() }}</p>
+        </div>
+        <button class="btn-toolbar btn-toolbar-danger" (click)="eliminarFavorito(fav.id)">Eliminar</button>
+      </div>
+    } @empty {
+      <div class="empty-state">
+        <p>No tienes servicios guardados en favoritos.</p>
+      </div>
+    }
+  </div>
+</section>

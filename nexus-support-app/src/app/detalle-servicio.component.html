@@ -1,0 +1,46 @@
+<section class="container">
+  @if (servicio) {
+    <div class="detalle-container">
+      <div class="detalle-imagen">
+        @if (servicio.imagen) {
+          <img [src]="servicio.imagen" [alt]="servicio.nombre" style="max-width: 100%; border-radius: 8px;">
+        } @else {
+          🖥️
+        }
+      </div>
+      
+      <div class="detalle-info">
+        <h1>{{ servicio.nombre }}</h1>
+        <div class="detalle-categoria">{{ servicio.categoria }}</div>
+        
+        <div class="detalle-rating">
+          @for (star of [1,2,3,4,5]; track star) {
+            <span [class]="star <= (servicio.rating || 0) ? 'star-gold' : 'star-gray'">★</span>
+          }
+        </div>
+
+        <p class="detalle-descripcion">{{ servicio.descripcion }}</p>
+
+        <ul class="detalle-caracteristicas">
+          @for (feature of servicio.caracteristicas; track feature) {
+            <li>{{ feature }}</li>
+          }
+        </ul>
+
+        <div class="detalle-precio">{{ getPrecioFormateado() }}</div>
+
+        <div class="detalle-botones">
+          <button [class]="esFavorito() ? 'btn-detalle-fav activo' : 'btn-detalle-fav'" (click)="toggleFavorito()">
+            {{ esFavorito() ? '❤️ Favorito' : '🤍 Favorito' }}
+          </button>
+          <a routerLink="/contacto" class="btn-detalle-contacto">📩 Contacto</a>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <div class="empty-state">
+      <p>Servicio no encontrado.</p>
+      <a routerLink="/servicios" class="btn-toolbar">Volver al catálogo</a>
+    </div>
+  }
+</section>
