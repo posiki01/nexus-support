@@ -65,7 +65,7 @@ export class DataService {
    * Asegura que la ruta de la imagen sea válida y tenga el prefijo correcto
    */
   private normalizarRutaImagen(ruta: string): string {
-    if (!ruta) return '/assets/img/hardware.jpg';
+    if (!ruta) return '/assets/img/logo.png';
     if (ruta.startsWith('http') || ruta.startsWith('/')) return ruta;
     
     // Extraer solo el nombre del archivo (ej: "src/assets/img/web.jpg" -> "web.jpg")

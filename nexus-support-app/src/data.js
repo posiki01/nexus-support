@@ -1,0 +1,47 @@
+let servicios = [
+    { id: 1, nombre: "Soporte Técnico 24/7", categoria: "Soporte", descripcionBreve: "Asistencia inmediata las 24 horas, todos los días del año.", descripcionCompleta: "Servicio de asistencia técnica disponible las 24 horas del día, los 7 días de la semana. Atendemos emergencias de hardware, software, redes y conectividad.", imagenUrl: "/assets/img/soporte.jpg", precio: 199000, rating: 4, caracteristicas: ["Diagnóstico Remoto inmediato", "Soporte telefónico ilimitado", "Visitas técnicas programadas", "Reporte mensual de incidencias"] },
+    { id: 2, nombre: "Desarrollo Web a Medida", categoria: "Desarrollo", descripcionBreve: "Sitios web modernos, responsivos y optimizados.", descripcionCompleta: "Creamos sitios web personalizados utilizando las últimas tecnologías como React, Angular, Vue.js.", imagenUrl: "/assets/img/web.jpg", precio: 1500000, rating: 5, caracteristicas: ["Diseño responsivo", "Optimización SEO", "Integración con APIs"] },
+    { id: 3, nombre: "Consultoría en Ciberseguridad", categoria: "Seguridad", descripcionBreve: "Auditorías y soluciones avanzadas para proteger tu empresa.", descripcionCompleta: "Realizamos auditorías de seguridad completas, pruebas de penetración, análisis de vulnerabilidades.", imagenUrl: "/assets/img/seguridad.jpg", precio: 350000, rating: 5, caracteristicas: ["Auditorías de seguridad", "Pruebas de penetración", "Análisis de vulnerabilidades"] },
+    { id: 4, nombre: "Implementación de IA", categoria: "Innovación", descripcionBreve: "Integra inteligencia artificial en tus procesos.", descripcionCompleta: "Implementamos soluciones de inteligencia artificial personalizadas: chatbots, análisis predictivo.", imagenUrl: "/assets/img/ia.jpg", precio: 2500000, rating: 4, caracteristicas: ["Chatbots inteligentes", "Análisis predictivo", "Visión por computador"] },
+    { id: 5, nombre: "Cloud Computing Empresarial", categoria: "Infraestructura", descripcionBreve: "Migración y gestión en AWS, Azure o Google Cloud.", descripcionCompleta: "Gestionamos tu infraestructura en la nube con los principales proveedores.", imagenUrl: "/assets/img/cloud.jpg", precio: 450000, rating: 5, caracteristicas: ["Migración a la nube", "Optimización de costos", "Monitoreo 24/7"] },
+    { id: 6, nombre: "Desarrollo de Apps Móviles", categoria: "Desarrollo", descripcionBreve: "Apps nativas e híbridas para iOS y Android.", descripcionCompleta: "Desarrollamos aplicaciones móviles nativas e híbridas con las mejores prácticas.", imagenUrl: "/assets/img/mobile.jpg", precio: 2800000, rating: 4, caracteristicas: ["Apps nativas e híbridas", "Notificaciones push", "Geolocalización"] },
+    { id: 7, nombre: "Automatización de Procesos", categoria: "Innovación", descripcionBreve: "Optimiza operaciones con RPA y workflows.", descripcionCompleta: "Automatizamos tareas repetitivas mediante RPA y workflows inteligentes.", imagenUrl: "/assets/img/rpa.jpg", precio: 1800000, rating: 4, caracteristicas: ["RPA avanzado", "Workflows inteligentes", "Reducción de costos"] },
+    { id: 8, nombre: "Mantenimiento de Equipos", categoria: "Soporte", descripcionBreve: "Diagnóstico y reparación de hardware.", descripcionCompleta: "Ofrecemos mantenimiento preventivo y correctivo para equipos de cómputo.", imagenUrl: "/assets/img/hardware.jpg", precio: 89000, rating: 5, caracteristicas: ["Diagnóstico rápido", "Repuestos originales", "Garantía"] }
+];
+
+function obtenerServicios() { return servicios; }
+function obtenerServicioPorId(id) { return servicios.find(s => s.id === id); }
+function agregarServicio(nuevo) { const nuevoId = Math.max(...servicios.map(s => s.id)) + 1; const completo = { id: nuevoId, ...nuevo, rating: 5, caracteristicas: [] }; servicios.push(completo); guardarEnStorage(); return completo; }
+function eliminarServicio(id) { servicios = servicios.filter(s => s.id !== id); guardarEnStorage(); }
+
+function normalizarRutaImagen(ruta) {
+    if (!ruta) return '/assets/img/logo.png';
+    if (ruta.startsWith('http') || ruta.startsWith('/')) return ruta;
+    
+    const partes = ruta.split(/[\/\\]/);
+    const nombreArchivo = partes[partes.length - 1];
+    
+    return `/assets/img/${nombreArchivo}`;
+}
+
+function guardarEnStorage() {
+    localStorage.setItem('nexus_services', JSON.stringify(servicios));
+}
+
+function cargarStorage() {
+    const guardados = localStorage.getItem('nexus_services');
+    if (guardados) {
+        const parsedData = JSON.parse(guardados);
+        servicios = parsedData.map(s => {
+            const rutaLimpia = normalizarRutaImagen(s.imagenUrl || s.imagen);
+            return {
+                ...s,
+                imagenUrl: rutaLimpia,
+                imagen: rutaLimpia // Compatibilidad con Angular
+            };
+        });
+        guardarEnStorage(); // Actualizar storage con rutas limpias
+    }
+}
+
+cargarStorage();
